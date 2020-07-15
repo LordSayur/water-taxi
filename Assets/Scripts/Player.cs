@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     private bool _clampMovement = true;
     [SerializeField]
     private Vector2 padding = new Vector2(1, 30);
+
+    [SerializeField]
+    private GameObject bulletPrefab;
 
     private Vector2 _movementDirection;
     private ScreenClamp screenClamp;
@@ -28,6 +31,13 @@ public class Player : MonoBehaviour
         _movementDirection = context.ReadValue<Vector2>();
     }
 
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        }
+    }
     private void Move(float forward, float sideway, float speed, bool isClamped = true)
     {
         float newForward, newSideway;
