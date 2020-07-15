@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _clampMovement = true;
     [SerializeField]
-    private Vector2 padding;
+    private Vector2 padding = new Vector2(1, 30);
 
     private Vector2 _movementDirection;
     private ScreenClamp screenClamp;
