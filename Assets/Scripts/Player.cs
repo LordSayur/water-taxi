@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -9,12 +10,15 @@ public class Player : MonoBehaviour
     private bool _clampMovement = true;
     [SerializeField]
     private Vector2 padding = new Vector2(1, 30);
+    [SerializeField]
+    private float _firingRate = 1f;
 
     [SerializeField]
     private GameObject bulletPrefab;
 
     private Vector2 _movementDirection;
     private ScreenClamp screenClamp;
+    private Coroutine fireContinously;
 
     private void Awake()
     {
@@ -35,7 +39,11 @@ public class Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            fireContinously = StartCoroutine(FireContinuously());
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            StopCoroutine(fireContinously);
         }
     }
     private void Move(float forward, float sideway, float speed, bool isClamped = true)
@@ -73,6 +81,15 @@ public class Player : MonoBehaviour
         };
 
         transform.position = newPosition;
+    }
+
+    private IEnumerator FireContinuously()
+    {
+        while (true)
+        {
+            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(_firingRate);
+        }
     }
 
     private void SetBoundary()
