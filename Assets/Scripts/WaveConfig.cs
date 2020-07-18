@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -10,7 +10,8 @@ public class WaveConfig : ScriptableObject
     [SerializeField] private float timeBetweenSpawns = 0.5f;
     [SerializeField] private float spawnRandomFactor = 0.3f;
     [SerializeField] private int numberOfEnemies = 5;
-    [SerializeField] private float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 5f;
 
     public GameObject GetEnemyPrefab() => enemyPrefab;
     public List<Transform> GetPathPrefab()
@@ -28,4 +29,5 @@ public class WaveConfig : ScriptableObject
     public float GetSpawnRandonFactor() => spawnRandomFactor;
     public int GetNumberOfEnemies() => numberOfEnemies;
     public float GetMoveSpeed() => moveSpeed;
+    public float GetRotationSpeed() => rotationSpeed;
 }
