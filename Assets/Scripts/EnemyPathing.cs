@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPathing : MonoBehaviour
 {
-    public WaveConfig waveConfig;
+    private WaveConfig _waveConfig;
     [SerializeField]
     private float _movementSpeed = 2f;
     [SerializeField]
@@ -21,6 +21,11 @@ public class EnemyPathing : MonoBehaviour
     private void Update()
     {
         MoveAlongWayPoints();
+    }
+
+    public void SetWaveConfig(WaveConfig waveConfig)
+    {
+        _waveConfig = waveConfig;
     }
 
     private void MoveAlongWayPoints()
