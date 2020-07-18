@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class EnemyPathing : MonoBehaviour
 {
-    [SerializeField]
-    private WaveConfig waveConfig;
+    public WaveConfig waveConfig;
     [SerializeField]
     private float _movementSpeed = 2f;
     [SerializeField]
