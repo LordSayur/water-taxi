@@ -1,19 +1,20 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPathing : MonoBehaviour
 {
     private WaveConfig _waveConfig;
-    [SerializeField]
     private float _movementSpeed = 2f;
-    [SerializeField]
     private float _rotationSpeed = 2f;
     private List<Transform> _waypoints;
     private int _waypointIndex = 0;
 
     private void Start()
     {
-        _waypoints = waveConfig.GetPathPrefab();
+        _waypoints = _waveConfig.GetPathPrefab();
+        _movementSpeed = _waveConfig.GetMoveSpeed();
+        _rotationSpeed = _waveConfig.GetRotationSpeed();
+
         transform.position = _waypoints[_waypointIndex++].transform.position;
         transform.LookAt(_waypoints[_waypointIndex].transform.position);
     }
