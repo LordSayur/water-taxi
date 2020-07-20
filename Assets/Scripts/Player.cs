@@ -4,15 +4,19 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField]
     private float _movementSpeed = 10f;
     [SerializeField]
     private bool _clampMovement = true;
     [SerializeField]
-    private Vector2 padding = new Vector2(1, 30);
+    private Vector2 _padding = new Vector2(1, 30);
+    [SerializeField]
+    private int _health = 200;
+
+    [Header("Projectile")]
     [SerializeField]
     private float _firingRate = 1f;
-
     [SerializeField]
     private GameObject bulletPrefab;
 
@@ -30,11 +34,16 @@ public class Player : MonoBehaviour
         Move(_movementDirection.y, _movementDirection.x, _movementSpeed, _clampMovement);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        HandleHit(other);
+    }
+
     public void GetAxis(InputAction.CallbackContext context)
     {
         _movementDirection = context.ReadValue<Vector2>();
     }
-
+    
     public void Fire(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -46,6 +55,18 @@ public class Player : MonoBehaviour
             StopCoroutine(fireContinously);
         }
     }
+
+    private void HandleHit(Collider other)
+    {
+        _health -= other.GetComponent<DamageDealer>().GetDamage();
+        Destroy(other.gameObject);
+
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Move(float forward, float sideway, float speed, bool isClamped = true)
     {
         float newForward, newSideway;
@@ -107,10 +128,10 @@ public class Player : MonoBehaviour
         screenClamp.RightTop = 
             mainCamera.transform.InverseTransformPoint(screenClamp.RightTop);
 
-        screenClamp.LeftBottom.x += padding.x;
-        screenClamp.LeftBottom.y += padding.x;
-        screenClamp.RightTop.x -= padding.x;
-        screenClamp.RightTop.y -= padding.y;
+        screenClamp.LeftBottom.x += _padding.x;
+        screenClamp.LeftBottom.y += _padding.x;
+        screenClamp.RightTop.x -= _padding.x;
+        screenClamp.RightTop.y -= _padding.y;
     }
 
     private struct ScreenClamp
