@@ -58,7 +58,10 @@ public class Player : MonoBehaviour
 
     private void HandleHit(Collider other)
     {
-        _health -= other.GetComponent<DamageDealer>().GetDamage();
+        var damageDealer = other.GetComponent<DamageDealer>();
+
+        if (damageDealer is null) return;
+        _health -= damageDealer.GetDamage();
         Destroy(other.gameObject);
 
         if (_health <= 0)

@@ -43,6 +43,8 @@ public class Enemy : MonoBehaviour
     private void ProcessHit(Collider other)
     {
         var damageDealer = other.GetComponent<DamageDealer>();
+        
+        if (damageDealer is null) return;
         _health -= damageDealer.GetDamage();
 
         if (_health <= 0)
