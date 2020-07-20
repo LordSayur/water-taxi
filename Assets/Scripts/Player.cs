@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -108,7 +108,8 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            bullet.layer = 10;
             yield return new WaitForSeconds(_firingRate);
         }
     }

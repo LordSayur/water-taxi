@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(_shotCounter);
             var bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().SetBulletSpeed(-20);
+            bullet.layer = 11;
             _shotCounter = UnityEngine.Random.Range(_minTimeBetweenShots, _maxTimeBetweenShots);
         }
     }
