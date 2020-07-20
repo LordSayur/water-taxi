@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         if (damageDealer is null) return;
         _health -= damageDealer.GetDamage();
 
+        Destroy(other.gameObject);
         if (_health <= 0)
         {
             Destroy(gameObject);
