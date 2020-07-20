@@ -16,4 +16,9 @@ public class Bullet : MonoBehaviour
     {
         rigidbody.velocity = new Vector3(0, 0, _bulletSpeed);
     }
+
+    public void SetBulletSpeed(float speed)
+    {
+        _bulletSpeed = speed;
+    }
 }

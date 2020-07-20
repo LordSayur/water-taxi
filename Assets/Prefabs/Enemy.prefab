@@ -59,6 +59,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 200
+  _shotCounter: 0
+  _minTimeBetweenShots: 0.2
+  _maxTimeBetweenShots: 3
+  _bulletPrefab: {fileID: 4530509674773478309, guid: b05e7c27e3fc43e4f82f4d6b2da012e4,
+    type: 3}
 --- !u!65 &-926667342801936666
 BoxCollider:
   m_ObjectHideFlags: 0
