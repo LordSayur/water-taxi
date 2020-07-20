@@ -5,16 +5,16 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]
     private float _bulletSpeed = 20f;
-    private Rigidbody rigidbody;
+    private Rigidbody _rigidbody;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        rigidbody.velocity = new Vector3(0, 0, _bulletSpeed);
+        _rigidbody.velocity = new Vector3(0, 0, _bulletSpeed);
     }
 
     public void SetBulletSpeed(float speed)
