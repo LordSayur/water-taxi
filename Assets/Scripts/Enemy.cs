@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -14,8 +15,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _maxTimeBetweenShots = 3f;
 
-    [SerializeField]
     private GameObject _bulletPrefab;
+
+    private void Awake()
+    {
+        _bulletPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Bullet.prefab");
+    }
 
     private void Start()
     {

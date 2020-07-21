@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,8 +18,7 @@ public class Player : MonoBehaviour
     [Header("Projectile")]
     [SerializeField]
     private float _firingRate = 1f;
-    [SerializeField]
-    private GameObject bulletPrefab;
+    private GameObject _bulletPrefab;
 
     private Vector2 _movementDirection;
     private ScreenClamp screenClamp;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         SetBoundary();
+        _bulletPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Bullet.prefab");
     }
 
     private void Update()
@@ -111,7 +112,7 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            var bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
             bullet.layer = 10;
             yield return new WaitForSeconds(_firingRate);
         }
