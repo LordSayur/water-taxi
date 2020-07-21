@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private List<WaveConfig> waveConfigs;
+    private List<WaveConfig> waveConfigs = null;
     [SerializeField]
     int staringWave = 0;
     [SerializeField]

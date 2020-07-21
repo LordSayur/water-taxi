@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="Enemy Wave Config", menuName = "Water Taxi/Wave Config")]
 public class WaveConfig : ScriptableObject
 {
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private GameObject pathPrefab;
+    [SerializeField] private GameObject enemyPrefab = null;
+    [SerializeField] private GameObject pathPrefab = null;
     [SerializeField] private float timeBetweenSpawns = 0.5f;
     [SerializeField] private float spawnRandomFactor = 0.3f;
     [SerializeField] private int numberOfEnemies = 5;
