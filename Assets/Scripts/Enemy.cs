@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
@@ -14,12 +14,16 @@ public class Enemy : MonoBehaviour
     private float _minTimeBetweenShots = 0.2f;
     [SerializeField]
     private float _maxTimeBetweenShots = 3f;
+    [SerializeField]
+    private float _explosionLifetime = 1f;
 
     private GameObject _bulletPrefab;
+    private GameObject _explosionPrefab;
 
     private void Awake()
     {
         _bulletPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Bullet.prefab");
+        _explosionPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Fire.prefab");
     }
 
     private void Start()
@@ -55,6 +59,8 @@ public class Enemy : MonoBehaviour
         Destroy(other.gameObject);
         if (_health <= 0)
         {
+            var explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, _explosionLifetime);
             Destroy(gameObject);
         }
     }

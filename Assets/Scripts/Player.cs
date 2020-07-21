@@ -18,7 +18,13 @@ public class Player : MonoBehaviour
     [Header("Projectile")]
     [SerializeField]
     private float _firingRate = 1f;
+
+    [Header("VFX")]
+    [SerializeField]
+    private float _explosionLifetime = 1f;
+    
     private GameObject _bulletPrefab;
+    private GameObject _explosionPrefab;
 
     private Vector2 _movementDirection;
     private ScreenClamp screenClamp;
@@ -28,6 +34,7 @@ public class Player : MonoBehaviour
     {
         SetBoundary();
         _bulletPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Bullet.prefab");
+        _explosionPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Fire.prefab");
     }
 
     private void Update()
@@ -67,6 +74,8 @@ public class Player : MonoBehaviour
 
         if (_health <= 0)
         {
+            var explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, _explosionLifetime);
             Destroy(gameObject);
         }
     }
