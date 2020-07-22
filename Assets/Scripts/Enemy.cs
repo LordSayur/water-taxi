@@ -17,6 +17,15 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _explosionLifetime = 1f;
 
+    [Header("SFX")]
+    [SerializeField]
+    [Range(0, 1)]
+    private float _sfxVolume = 0.7f;
+    [SerializeField]
+    private AudioClip _explosionClip;
+    [SerializeField]
+    private AudioClip _bulletClip;
+
     private GameObject _bulletPrefab;
     private GameObject _explosionPrefab;
 
@@ -40,6 +49,7 @@ public class Enemy : MonoBehaviour
             var bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
             bullet.GetComponent<Bullet>().SetBulletSpeed(-20);
             bullet.layer = 11;
+            AudioSource.PlayClipAtPoint(_bulletClip, Camera.main.transform.position, _sfxVolume);
             _shotCounter = UnityEngine.Random.Range(_minTimeBetweenShots, _maxTimeBetweenShots);
         }
     }
@@ -61,6 +71,7 @@ public class Enemy : MonoBehaviour
         {
             var explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(explosion, _explosionLifetime);
+            AudioSource.PlayClipAtPoint(_explosionClip, Camera.main.transform.position, _sfxVolume);
             Destroy(gameObject);
         }
     }

@@ -22,7 +22,16 @@ public class Player : MonoBehaviour
     [Header("VFX")]
     [SerializeField]
     private float _explosionLifetime = 1f;
-    
+
+    [Header("SFX")]
+    [SerializeField]
+    [Range(0,1)]
+    private float _sfxVolume = 0.7f;
+    [SerializeField]
+    private AudioClip _explosionClip;
+    [SerializeField]
+    private AudioClip _bulletClip;
+
     private GameObject _bulletPrefab;
     private GameObject _explosionPrefab;
 
@@ -76,6 +85,7 @@ public class Player : MonoBehaviour
         {
             var explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(explosion, _explosionLifetime);
+            AudioSource.PlayClipAtPoint(_explosionClip, Camera.main.transform.position, _sfxVolume);
             Destroy(gameObject);
         }
     }
@@ -123,6 +133,7 @@ public class Player : MonoBehaviour
         {
             var bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
             bullet.layer = 10;
+            AudioSource.PlayClipAtPoint(_bulletClip, Camera.main.transform.position, _sfxVolume);
             yield return new WaitForSeconds(_firingRate);
         }
     }

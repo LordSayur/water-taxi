@@ -63,8 +63,10 @@ MonoBehaviour:
   _shotCounter: 0
   _minTimeBetweenShots: 0.2
   _maxTimeBetweenShots: 3
-  _bulletPrefab: {fileID: 4530509674773478309, guid: b05e7c27e3fc43e4f82f4d6b2da012e4,
-    type: 3}
+  _explosionLifetime: 1
+  _sfxVolume: 0.7
+  _explosionClip: {fileID: 8300000, guid: 2ce806f3d1319d540ad88ab2b5166b4b, type: 3}
+  _bulletClip: {fileID: 8300000, guid: 97cabf28e0d191a4c8771b41cc436d96, type: 3}
 --- !u!65 &-926667342801936666
 BoxCollider:
   m_ObjectHideFlags: 0
