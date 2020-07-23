@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
             var explosion = Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(explosion, _explosionLifetime);
             AudioSource.PlayClipAtPoint(_explosionClip, Camera.main.transform.position, _sfxVolume);
+            FindObjectOfType<LevelManager>().LoadGameOverScene();
             Destroy(gameObject);
         }
     }

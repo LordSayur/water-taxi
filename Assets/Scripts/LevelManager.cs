@@ -1,10 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField]
+    private float _delay = 3f;
+
     public void LoadGameScene()
     {
         SceneManager.LoadScene(1);
@@ -12,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadGameOverScene()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(LoadGameOver());
     }
 
     public void LoadMainMenu()
@@ -23,5 +25,11 @@ public class LevelManager : MonoBehaviour
     public void QuitApplication()
     {
         Application.Quit();
+    }
+
+    private IEnumerator LoadGameOver()
+    {
+        yield return new WaitForSeconds(_delay);
+        SceneManager.LoadScene(2);
     }
 }
