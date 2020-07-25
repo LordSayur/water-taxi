@@ -396,7 +396,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 10, y: 10}
-        m_Offset: {x: -1.3532068, y: -1.3532068}
+        m_Offset: {x: -0.80956274, y: -0.80956274}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -1022,6 +1022,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 603604437, guid: c0491bf1aa902c643b940d576ef478f5, type: 3}
+      propertyPath: _delay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6714558670463366855, guid: c0491bf1aa902c643b940d576ef478f5,
         type: 3}
       propertyPath: waveConfigs.Array.size
@@ -1039,6 +1043,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f60a9092c3781ce4095a64a868ba7c3c,
         type: 2}
+    - target: {fileID: 6714558670463366855, guid: c0491bf1aa902c643b940d576ef478f5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7097151999463665014, guid: c0491bf1aa902c643b940d576ef478f5,
         type: 3}
       propertyPath: m_Name
